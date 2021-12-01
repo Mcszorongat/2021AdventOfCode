@@ -9,6 +9,9 @@ if __name__ == "__main__":
 
     print("task1:\t", sum(np.diff(depths)>0))
 
-    new_length = len(depths)-2
-    depths_cum = sum(np.array([depths[i:new_length+i] for i in range(3)]))
+    window_width = 3
+    new_length = len(depths) - window_width + 1
+    depths_cum = sum(
+        np.array([depths[i:new_length+i] for i in range(window_width)])
+    )
     print("task2:\t", sum(np.diff(depths_cum)>0))
