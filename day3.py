@@ -1,15 +1,17 @@
 import numpy as np
 
 
-def decode(report):
+def read_data(filename: str) -> np.ndarray:
+    with open(filename) as f:
+        report = f.read().splitlines()
     return np.array([",".join(x).split(",") for x in report], dtype=int)
 
 
-def convert(x):
-    return int("".join(np.array(x, dtype=str)), 2)
+def convert(x: np.ndarray) -> int:
+    return (x * 2 ** np.arange(len(x) - 1, -1, -1, dtype='int64')).sum()
 
 
-def task1(matrix):
+def task1(matrix: np.ndarray) -> int:
     most_common = matrix.mean(axis=0)>0.5
     gamma = convert(most_common.astype(int))
     epsilon = convert((~most_common).astype(int))
@@ -36,19 +38,15 @@ def search(type: str, mat: np.ndarray, digit: int=0) -> np.ndarray:
             )
 
 
-def task2(matrix):
+def task2(matrix: np.ndarray) -> int:
     oxygen_generator_rating = convert(search(type="oxygen", mat=matrix))
     co2_scrubber_rating = convert(search(type="co2", mat=matrix))
     return oxygen_generator_rating * co2_scrubber_rating
 
 
 if __name__ == "__main__":
-    with open("input3.txt") as f:
-        report = f.read().splitlines()
-    # report = ["00100", "11110", "10110", "10111", "10101", "01111",
-    #       "00111", "11100", "10000", "11001", "00010", "01010"]
 
-    matrix = decode(report)
+    matrix = read_data("input3.txt")
 
     print("task1: ", task1(matrix=matrix))
 
