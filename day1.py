@@ -26,6 +26,6 @@ if __name__ == "__main__":
     depths = read_data("input1.txt")
     # depths = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
 
-    print("task1:\t", task1(depths))
+    print("task1:\t", task1(depths=depths))
 
-    print("task2:\t", task2(depths))
+    print("task2:\t", task2(depths=depths))
