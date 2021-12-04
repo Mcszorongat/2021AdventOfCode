@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def read_data(filename):
+def read_data(filename: str) -> pd.DataFrame:
     with open(filename) as f:
         lines = f.read().splitlines()
     course_dicts = [{line.split(' ')[0]: int(line.split(' ')[1])}
