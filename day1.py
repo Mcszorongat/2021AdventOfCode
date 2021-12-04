@@ -24,7 +24,6 @@ def task2(depths: np.ndarray, window_width: int=3) -> int:
 if __name__ == "__main__":
 
     depths = read_data("input1.txt")
-    # depths = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
 
     print("task1:\t", task1(depths=depths))
 
