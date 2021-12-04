@@ -1,10 +1,11 @@
 import pandas as pd
 
 
-def decode_course(course: list) -> dict:
-    split_course = [[line.split(' ')[0], int(line.split(' ')[1])]
-                    for line in course]
-    course_dicts = [{x[0]: x[1]} for x in split_course]
+def read_data(filename):
+    with open(filename) as f:
+        lines = f.read().splitlines()
+    course_dicts = [{line.split(' ')[0]: int(line.split(' ')[1])}
+                    for line in lines]
     direction_df = pd.DataFrame(course_dicts)
     return direction_df.fillna(0)
 
@@ -26,12 +27,9 @@ def task2(direction_df: pd.DataFrame) -> int:
 
 
 if __name__ == "__main__":
-    with open("input2.txt") as f:
-        course = f.read().splitlines()
-    # course = ["forward 5", "down 5",
-    #           "forward 8", "up 3", "down 8", "forward 2"]
-    direction_df = decode_course(course)
+    
+    direction_df = read_data("input2.txt")
 
-    print("task1: ", task1(direction_df=direction_df))
+    print("task1:\t", task1(direction_df=direction_df))
 
-    print("task2: ", task2(direction_df=direction_df))
+    print("task2:\t", task2(direction_df=direction_df))
