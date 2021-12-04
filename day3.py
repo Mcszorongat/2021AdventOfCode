@@ -1,7 +1,6 @@
 import numpy as np
 
 
-
 def decode(report):
     return np.array([",".join(x).split(",") for x in report], dtype=int)
 
