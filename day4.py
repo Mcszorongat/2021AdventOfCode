@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def read_data(filename: str):
+def read_data(filename: str) -> tuple:
     with open(filename, "r") as f:
         groups = f.read().split("\n\n")
     random_numbers = np.array(groups[0].split(","), dtype=int)
@@ -12,7 +12,7 @@ def read_data(filename: str):
     return random_numbers, matrices
 
 
-def is_winner(matrix):
+def is_winner(matrix: np.ndarray) -> bool:
     dim = matrix.shape[0]
     if any(matrix.sum(axis=0) == -dim) or any(matrix.sum(axis=1) == -dim):
         return True
@@ -20,7 +20,7 @@ def is_winner(matrix):
         return False
 
 
-def find_winner(matrices, random_numbers):
+def find_winner(matrices: np.ndarray, random_numbers: np.ndarray) -> tuple:
     is_winner_list = [is_winner(matrix) for matrix in matrices]
     if any(is_winner_list):
         return is_winner_list.index(True), len(random_numbers)
@@ -32,7 +32,7 @@ def find_winner(matrices, random_numbers):
         )
 
 
-def task1(random_numbers, matrices):
+def task1(random_numbers: np.ndarray, matrices: np.ndarray) -> tuple:
     idx, steps_left = find_winner(matrices=matrices,
                                   random_numbers=random_numbers)
     winner_numbers = matrices[idx].flatten()
@@ -42,7 +42,7 @@ def task1(random_numbers, matrices):
     return unmarked_sum * random_numbers[-steps_left-1], idx
 
 
-def task2(random_numbers, matrices):
+def task2(random_numbers: np.ndarray, matrices: np.ndarray) -> tuple:
     indices_left = list(range(len(matrices)))
     while indices_left:
         score, idx = task1(random_numbers, matrices[indices_left])
@@ -53,6 +53,7 @@ def task2(random_numbers, matrices):
 if __name__=="__main__":
     random_numbers, matrices = read_data("input4.txt")
 
-    print(task1(random_numbers=random_numbers, matrices=matrices)[0])
+    print("task1:\t", 
+          task1(random_numbers=random_numbers, matrices=matrices)[0])
 
     print(task2(random_numbers=random_numbers, matrices=matrices)[0])
