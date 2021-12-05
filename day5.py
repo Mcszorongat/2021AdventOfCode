@@ -38,7 +38,6 @@ def task2(line_coordinates: np.ndarray) -> int:
     return sum(counts > 1)
 
 
-
 if __name__ == "__main__":
     line_coordinates = read_data("input5.txt")
 
