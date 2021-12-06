@@ -8,33 +8,40 @@ def read_data(filename: str) -> np.ndarray:
 
 
 def task1(values: np.ndarray, days: int,
-          cycle_days: int=7, newborn_increment: int=3) -> int:
+          cycle_days: int=7, newborn_delay: int=3) -> int:
 
     for _ in range(days):
         values = np.hstack([np.where(values == 0, cycle_days, values) - 1,
                            [np.full(np.where(values == 0)[1].shape[0],
-                                    cycle_days + newborn_increment - 2)]])
+                                    cycle_days + newborn_delay - 2)]])
     return values.shape[1]
 
 
 def transform_data(values: np.ndarray, cycle_days: int,
-                   newborn_increment: int) -> np.ndarray:
-    tmp = np.zeros([1, cycle_days + newborn_increment - 1], dtype='int64')
-    idxs, counts = np.unique(values[0], axis=0, return_counts=True)
-    for idx, count in zip(idxs, counts):
-        tmp[0, idx] = count
-    return tmp
+                   newborn_delay: int) -> np.ndarray:
+
+    return np.array(
+        [[(values == i).sum() for i in range(cycle_days + newborn_delay - 1)]],
+        dtype='int64'
+    )
 
 
 def elapse_day(values: np.ndarray, cycle_days: int) -> np.ndarray:
-    values[0, cycle_days] += values[0, 0]
-    return np.hstack([values[:, 1:], values[:, 0:1]])
+    return np.hstack(
+        [
+            values[:, 1:cycle_days],                                  # 0:5-1:6
+            values[:, cycle_days:cycle_days + 1] + values[:, 0:1],    #  6 -7+0
+            values[:, cycle_days + 1:],                               #  7 - 8:
+            values[:, 0:1]                                            #  8 - 0
+        ]
+    )
 
 
 def task2(values: np.ndarray, days: int,
-          cycle_days: int=7, newborn_increment: int=3) -> int:
+          cycle_days: int=7, newborn_delay: int=3) -> int:
+
     transformed_values = transform_data(values=values, cycle_days=cycle_days,
-                                        newborn_increment=newborn_increment)
+                                        newborn_delay=newborn_delay)
     for _ in range(days):
         transformed_values = elapse_day(values=transformed_values,
                                         cycle_days=cycle_days)
