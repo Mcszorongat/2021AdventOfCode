@@ -56,4 +56,5 @@ if __name__=="__main__":
     print("task1:\t", 
           task1(random_numbers=random_numbers, matrices=matrices)[0])
 
-    print(task2(random_numbers=random_numbers, matrices=matrices)[0])
+    print("task2:\t",
+          task2(random_numbers=random_numbers, matrices=matrices)[0])
