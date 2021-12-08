@@ -50,4 +50,4 @@ if __name__ == "__main__":
 
     print("task1: ", task1(matrix=matrix))
 
-    print("task1: ", task2(matrix=matrix))
+    print("task2: ", task2(matrix=matrix))
