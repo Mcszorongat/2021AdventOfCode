@@ -12,10 +12,9 @@ def task1(positions: np.ndarray) -> int:
 
 
 def task21(positions: np.ndarray) -> int:
-    """SLOW"""
+    """SLOW WITH WIDE RANGE"""
     return int(min(
-        [np.array(list(map(lambda y: y*(y + 1)/2,
-                           np.abs(positions - x)))).sum()
+        [(np.abs(positions - x) * (np.abs(positions - x) + 1) / 2).sum()
          for x in range(positions.min(), positions.max(), 1)]
     ))
 
@@ -29,9 +28,9 @@ def task22(positions: np.ndarray) -> int:
     if sum(positions == mean):
         correction = min([np.abs(diff), sum(positions == mean)])
         optimal_x += np.sign(mean - optimal_x) * increment * correction
-    r_x = np.round(optimal_x)
+    rx = np.round(optimal_x)    # rounded optimal x
 
-    return int(sum(np.abs(positions - r_x)*(np.abs(positions - r_x) + 1) / 2))
+    return int(sum(np.abs(positions - rx) * (np.abs(positions - rx) + 1) / 2))
 
 
 if __name__ == "__main__":
