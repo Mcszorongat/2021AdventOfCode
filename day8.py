@@ -18,15 +18,15 @@ def decode_patterns(patterns_list):
 
     condition = [
         None,
-        lambda _, p: len(p) == 2,                                       # 1
-        lambda d, p: (len(p) == 5) & (set(p + d[4]) == set(d[8])),      # 2
-        lambda d, p: (len(p) == 5) & (set(p + d[1]) == set(p)),         # 3
-        lambda _, p: len(p) == 4,                                       # 4
-        lambda d, p: (len(p) == 5) & (set(p + d[2]) == set(d[8])),      # 5
-        lambda d, p: (len(p) == 6) & (set(p + d[1]) == set(d[8])),      # 6
-        lambda _, p: len(p) == 3,                                       # 7
-        lambda _, p: len(p) == 7,                                       # 8
-        lambda d, p: (len(p) == 6) & (set(p + d[3]) == set(p))          # 9
+        lambda _, p: len(p) == 2,                                   # 1
+        lambda d, p: (len(p) == 5) & (set(p + d[4]) == set(d[8])),  # 2
+        lambda d, p: (len(p) == 5) & (set(p + d[1]) == set(p)),     # 3
+        lambda _, p: len(p) == 4,                                   # 4
+        lambda d, p: (len(p) == 5) & (set(p + d[2]) == set(d[8])),  # 5
+        lambda d, p: (len(p) == 6) & (set(p + d[1]) == set(d[8])),  # 6
+        lambda _, p: len(p) == 3,                                   # 7
+        lambda _, p: len(p) == 7,                                   # 8
+        lambda d, p: (len(p) == 6) & (set(p + d[3]) == set(p))      # 9
     ]
 
     for pattern in patterns:
