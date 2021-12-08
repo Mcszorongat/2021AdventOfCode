@@ -1,4 +1,5 @@
 import numpy as np
+from numpy import linalg
 
 
 def read_data(filename: str) -> np.ndarray:
@@ -26,26 +27,18 @@ def transform_data(values: np.ndarray, cycle_days: int,
     )
 
 
-def elapse_day(values: np.ndarray, cycle_days: int) -> np.ndarray:
-    return np.hstack(
-        [
-            values[:, 1:cycle_days],                                  # 0:5-1:6
-            values[:, cycle_days:cycle_days + 1] + values[:, 0:1],    #  6 -7+0
-            values[:, cycle_days + 1:],                               #  7 - 8:
-            values[:, 0:1]                                            #  8 - 0
-        ]
-    )
-
-
 def task2(values: np.ndarray, days: int,
           cycle_days: int=7, newborn_delay: int=3) -> int:
 
     transformed_values = transform_data(values=values, cycle_days=cycle_days,
                                         newborn_delay=newborn_delay)
-    for _ in range(days):
-        transformed_values = elapse_day(values=transformed_values,
-                                        cycle_days=cycle_days)
-    return transformed_values.sum()
+
+    size = cycle_days + newborn_delay - 1
+    a = np.vstack([np.zeros([1, size]), np.eye(size-1, size)])
+    a[0, cycle_days-1] = 1
+    a[0, -1] = 1
+
+    return np.matmul(transformed_values, linalg.matrix_power(a, days)).sum()
 
 
 if __name__ == "__main__":
