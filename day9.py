@@ -26,7 +26,7 @@ def task1(height_map: np.ndarray) -> int:
 
 
 def task2(height_map: np.ndarray) -> int:
-    labels = measure.label((height_map != 9)*1, connectivity=1)
+    labels = measure.label((height_map != 9), connectivity=1)
     areas = np.unique(labels, return_counts=True)[1][1:]
     return np.prod(sorted(areas)[-3:])
 
