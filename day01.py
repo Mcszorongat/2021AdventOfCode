@@ -23,7 +23,7 @@ def task2(depths: np.ndarray, window_width: int=3) -> int:
 
 if __name__ == "__main__":
 
-    depths = read_data("input1.txt")
+    depths = read_data("input01.txt")
 
     print("task1:\t", task1(depths=depths))
 

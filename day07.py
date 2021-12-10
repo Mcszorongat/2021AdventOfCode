@@ -35,7 +35,7 @@ def task22(positions: np.ndarray) -> int:
 
 if __name__ == "__main__":
 
-    positions = read_data("input7.txt")
+    positions = read_data("input07.txt")
 
     print("task1:\t", task1(positions=positions))
 

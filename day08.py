@@ -63,7 +63,7 @@ def task2(data: list) -> int:
 
 if __name__ == "__main__":
 
-    data = read_data("input8.txt")
+    data = read_data("input08.txt")
 
     print("task1:\t", task1(output_list=data[1]))
 

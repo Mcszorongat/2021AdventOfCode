@@ -46,7 +46,7 @@ def task2(matrix: np.ndarray) -> int:
 
 if __name__ == "__main__":
 
-    matrix = read_data("input3.txt")
+    matrix = read_data("input03.txt")
 
     print("task1: ", task1(matrix=matrix))
 

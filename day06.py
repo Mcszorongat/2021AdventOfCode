@@ -43,7 +43,7 @@ def task2(values: np.ndarray, days: int,
 
 if __name__ == "__main__":
 
-    initial_values = read_data("input6.txt")
+    initial_values = read_data("input06.txt")
 
     print("task1:\t", task1(values=initial_values, days=80))
 

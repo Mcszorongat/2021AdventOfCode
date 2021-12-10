@@ -39,7 +39,7 @@ def task2(line_coordinates: np.ndarray) -> int:
 
 
 if __name__ == "__main__":
-    line_coordinates = read_data("input5.txt")
+    line_coordinates = read_data("input05.txt")
 
     print("task1:\t", task1(line_coordinates=line_coordinates))
 

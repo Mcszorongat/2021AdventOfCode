@@ -28,7 +28,7 @@ def task2(direction_df: pd.DataFrame) -> int:
 
 if __name__ == "__main__":
     
-    direction_df = read_data("input2.txt")
+    direction_df = read_data("input02.txt")
 
     print("task1:\t", task1(direction_df=direction_df))
 

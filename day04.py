@@ -51,7 +51,7 @@ def task2(random_numbers: np.ndarray, matrices: np.ndarray) -> tuple:
 
 
 if __name__=="__main__":
-    random_numbers, matrices = read_data("input4.txt")
+    random_numbers, matrices = read_data("input04.txt")
 
     print("task1:\t", 
           task1(random_numbers=random_numbers, matrices=matrices)[0])

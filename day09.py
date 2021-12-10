@@ -33,7 +33,7 @@ def task2(height_map: np.ndarray) -> int:
 
 if __name__ == "__main__":
 
-    height_map = read_data("input9.txt")
+    height_map = read_data("input09.txt")
 
     print("task1:\t", task1(height_map=height_map))
 
