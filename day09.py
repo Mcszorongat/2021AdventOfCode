@@ -2,7 +2,7 @@ import numpy as np
 from skimage import measure
 
 
-def read_data(filename: str) -> list:
+def read_data(filename: str) -> np.ndarray:
     with open(filename) as f:
         lines = f.read().split("\n")
     return np.array([[int(char) for char in line] for line in lines])
