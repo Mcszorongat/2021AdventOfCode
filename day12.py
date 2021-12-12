@@ -12,10 +12,7 @@ def pairs2neigbor_dict(pairs: list) -> dict:
 
 
 def walk_through(neighbor_dict: dict,
-                 current_name: str="start", taboo_set: set=None):
-
-    if taboo_set is None:
-        taboo_set = set()
+                 current_name: str="start", taboo_set: set=set()):
 
     if current_name.lower() == current_name:
         exception = set([current_name])
@@ -33,7 +30,6 @@ def walk_through(neighbor_dict: dict,
     return [[current_name] + lst for lst in tmp_list]
 
 
-
 def task1(neighbor_dict: dict) -> int:
     paths = walk_through(neighbor_dict)
     valid_paths = [path for path in paths if path[-1] == "end"]
@@ -41,13 +37,9 @@ def task1(neighbor_dict: dict) -> int:
 
 
 def walk_through_repetition(neighbor_dict: dict,
-                            current_name: str="start", taboo_set: set=None,
-                            visited_small_caves: set=None) -> list:
-    
-    if taboo_set is None:
-        taboo_set = set(["start"])
-    if visited_small_caves is None:
-        visited_small_caves = set()
+                            current_name: str="start",
+                            taboo_set: set=set(["start"]),
+                            visited_small_caves: set=set()) -> list:
 
     exception = set([])
     if current_name.lower() == current_name:
